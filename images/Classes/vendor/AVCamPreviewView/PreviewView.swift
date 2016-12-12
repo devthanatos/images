@@ -1,9 +1,31 @@
-//
-//  PreviewView.swift
-//  images
-//
-//  Created by Michael Akopyants on 11/12/2016.
-//  Copyright © 2016 devthanatos. All rights reserved.
-//
+/*
+ Copyright (C) 2016 Apple Inc. All Rights Reserved.
+ See LICENSE.txt for this sample’s licensing information
+ 
+ Abstract:
+ Application preview view.
+ */
 
-import Foundation
+import UIKit
+import AVFoundation
+
+class PreviewView: UIView {
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer {
+        return layer as! AVCaptureVideoPreviewLayer
+    }
+    
+    var session: AVCaptureSession? {
+        get {
+            return videoPreviewLayer.session
+        }
+        set {
+            videoPreviewLayer.session = newValue
+        }
+    }
+    
+    // MARK: UIView
+    
+    override class var layerClass: AnyClass {
+        return AVCaptureVideoPreviewLayer.self
+    }
+}
